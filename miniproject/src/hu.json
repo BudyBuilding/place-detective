@@ -1,0 +1,60 @@
+[
+  {
+    "id": 1,
+    "name": "Parliament",
+    "place": "Budapest",
+    "url": "https://lh5.googleusercontent.com/p/AF1QipN_UAW-UgP0oVgU69VcntZ1W05H-5lKSicqh-CG=w548-h318-n-k-no"
+  },
+  {
+    "id": 2,
+    "name": "Town Hall",
+    "place": "Tihany",
+    "url": "https://www.udvarhely.ro/wp-content/uploads/2018/06/tihany-civertan-750x400.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Fire Tower",
+    "place": "Sopron",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/2012-ben_meg%C3%BAjult_T%C5%B1ztorony.JPG/250px-2012-ben_meg%C3%BAjult_T%C5%B1ztorony.JPG"
+  },
+  {
+    "id": 4,
+    "name": "Castle",
+    "place": "Keszthely",
+    "url": "https://csodalatosmagyarorszag.hu/wp-content/uploads/2018/02/keszthely-festetics-kastely-helikon-kastelymuzeum-csodalatosbalaton.hu_-1024x576.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Fisherman's Bastion",
+    "place": "Budapest",
+    "url": "https://i.szalas.hu/pois/49/original/32026.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Esztergom Basilica",
+    "place": "Esztergom",
+    "url": "https://csodalatosmagyarorszag.hu/wp-content/uploads/2020/07/esztergom-duna-dunakanyar-dom-szekesegyhaz1-csodalatosmagyarorszag.jpg"
+  },  {
+    "id": 7,
+    "name": "Matthias Church",
+    "place": "Budapest",
+    "url": "https://csodalatosmagyarorszag.hu/wp-content/uploads/2020/03/este-naplemente-matyas-templom-budapest-budaivar-latnivalo-csodalatosmagyarorszag.jpg"
+    },{
+    "id": 8,
+    "name": "Liberty Bridge",
+    "place": "Budapest",
+    "url": "https://hu.wikipedia.org/wiki/F%C3%A1jl:Budapesti_Szabads%C3%A1g_h%C3%ADd_Pestr%C5%91l_2014.JPG"
+    },
+    {
+    "id": 9,
+    "name": "Pannonhalma Archabbey",
+    "place": "Pannonhalma",
+    "url": "https://csodalatosmagyarorszag.hu/wp-content/uploads/2020/06/pannonhalmi-foapatsag-naplemente-2020majus-csodalatosmagyarorszag-dronfoto-peter-leyer.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Debrecen Great Church",
+    "place": "Debrecen",
+    "url": "https://tinyurl.com/deb-nagy-templom"
+  }
+  ]

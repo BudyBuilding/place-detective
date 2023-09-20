@@ -1,0 +1,146 @@
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import huData from "./hu.json";
+
+function App() {
+  const [selectedTopic, setSelectedTopic] = useState(null);
+
+  const handleTopicSelect = (topic) => {
+    setSelectedTopic(topic);
+  };
+
+  return (
+    <div className="App">
+      {!selectedTopic ? (
+        <TopicMenu topics={topics} onSelect={handleTopicSelect} />
+      ) : (
+        <Quiz topic={selectedTopic} data={huData} setSelectedTopic={setSelectedTopic} />
+      )}
+    </div>
+  );
+}
+
+function TopicMenu({ topics, onSelect }) {
+  return (
+    <div className="menu">
+      <h1>Place Detective</h1>
+      <h2>Choose a Topic:</h2>
+      <div className="topics">
+        {topics.map((topic) => (
+          <div className="topic-choose btn" key={topic} onClick={() => onSelect(topic)}>
+            {topic}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Quiz({ topic, data, setSelectedTopic }) {
+  const [questions, setQuestions] = useState([]);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [score, setScore] = useState(0);
+  const [quizFinished, setQuizFinished] = useState(false);
+
+  useEffect(() => {
+    const shuffledQuestions = shuffleArray(data).map((item) => {
+      // Generate random index for the correct option
+      const correctOptionIndex = Math.floor(Math.random() * 4);
+
+      // Create options array with one correct place name and three random wrong place names
+      const options = [
+        item.place,
+        getRandomWrongPlaceName(data, item.place),
+        getRandomWrongPlaceName(data, item.place),
+        getRandomWrongPlaceName(data, item.place),
+      ];
+      return {
+        imageSrc: item.url,
+        options: shuffleArray(options), // Shuffle the options
+        correctOption: correctOptionIndex,
+      };
+    });
+
+    setQuestions(shuffledQuestions);
+  }, [data]);
+
+  const handleAnswer = (selectedOption) => {
+    if (selectedOption === questions[currentQuestion].correctOption) {
+      setScore(score + 1);
+    }
+
+    if (currentQuestion < 9) {
+      setCurrentQuestion(currentQuestion + 1);
+    } else {
+      setQuizFinished(true);
+    }
+  };
+
+  const handleRetry = () => {
+    setCurrentQuestion(0);
+    setScore(0);
+    setQuizFinished(false);
+  };
+
+  const renderResultPage = () => {
+    return (
+      <div className="result">
+        <h1>Quiz Finished!</h1>
+        <p>Your Score: {score}/10</p>
+        <div className="result-buttons">
+          <button className="btn" onClick={handleRetry}>Retry</button>
+          <button className="btn" onClick={() => setSelectedTopic(null)}>Main Menu</button>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="play">
+      <div className="header">
+        <h1>{topic} Quiz</h1>
+        <p className="question-number">Question {currentQuestion + 1}/10</p>
+      </div>
+      {quizFinished ? (
+        renderResultPage()
+      ) : (
+        questions[currentQuestion] && (
+          <>
+            <img
+              className="pic"
+              src={questions[currentQuestion].imageSrc}
+              alt={`Question ${currentQuestion + 1}`}
+            />
+            <div className="options">
+              {questions[currentQuestion].options.map((option, index) => (
+                <button className="btn" key={index} onClick={() => handleAnswer(index)}>
+                  {option}
+                </button>
+              ))}
+            </div>
+          </>
+        )
+      )}
+    </div>
+  );
+}
+
+function shuffleArray(array) {
+  const shuffledArray = [...array];
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+  }
+  return shuffledArray;
+}
+
+function getRandomWrongPlaceName(data, exclude) {
+  const places = data.map((item) => item.place);
+  const filteredPlaces = places.filter((place) => place !== exclude);
+  const randomIndex = Math.floor(Math.random() * filteredPlaces.length);
+  return filteredPlaces[randomIndex];
+}
+
+const topics = ["Topic 1", "Topic 2", "Topic 3", "Topic 4"];
+
+export default App;
